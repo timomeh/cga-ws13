@@ -11,8 +11,8 @@ public class Main extends TurtleMode{
 	
 	@Override public void turtleCommands() {
 		house_width = 100;
-		house_floors = 3;
-		house_windows = 6;
+		house_floors = 2;
+		house_windows = 5;
 		n_trees = 3;
 		horizon(); // Schaut danach nach rechts
 		trees(n_trees); // Schaut danach nach rechts
@@ -28,7 +28,7 @@ public class Main extends TurtleMode{
 		int floor_height = 50;
 		int win_floor = windows/floors;
 		int win_width = (width - ((win_floor*2))*win_padding)/win_floor;
-		int roof_height = (int) (floor_height * floors * 0.75);
+		int roof_height = (int) (floor_height * floors * 0.5);
 		double roof_side = Math.sqrt(Math.pow(width/2, 2) + Math.pow(roof_height, 2));
 		int roof_side_int = (int) roof_side;
 		int angle_side = new Double(Math.toDegrees(Math.asin(roof_height / roof_side))).intValue();
