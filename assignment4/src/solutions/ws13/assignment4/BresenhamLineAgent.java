@@ -20,6 +20,7 @@ public class BresenhamLineAgent extends AmcgalaAgent {
     private int x;
     private int y;
     private int err;
+    private int err2;
     private boolean draw;
 
 
@@ -39,7 +40,7 @@ public class BresenhamLineAgent extends AmcgalaAgent {
         this.x = x0;
         this.y = y0;
 
-        this.err = 2*dy - dx;
+        this.err = dx - dy;
         draw = true;
     }
 
@@ -54,14 +55,17 @@ public class BresenhamLineAgent extends AmcgalaAgent {
             success();
             return die();
         } else {
-        	if (err >= 0) {
-        		y += sy;
-        		err -= 2*dx;
+        	err2 = err * 2;
+        	if (err2 > -dy) {
+        		x += sx;
+        		err -= dy;
         	}
-	        x += sx;
-	        err += 2*dy;
+        	if (err2 < dx) {
+        		y += sy;
+        		err += dx;
+        	}
         	draw = true;
-            World.Index point = new World.Index(x, y);
+            World.Index point = new World.Index(this.x, this.y);
             return new AgentMessages.MoveTo(point);
         }
     }
